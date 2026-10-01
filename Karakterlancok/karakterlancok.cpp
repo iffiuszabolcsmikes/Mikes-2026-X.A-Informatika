@@ -2,13 +2,15 @@
 
 using namespace std;
 
-int stringLength_index(char strng[]){
+int stringLength_index(char strng[])
+{
     int i = 0;
     while (strng[i] != 0) i++;
     return i;
 }
 
-void toUpperCase_index(char strng[]){
+void toUpperCase_index(char strng[])
+{
     int i = 0;
     while (strng[i] != 0) {
         if(strng[i] >= 'a' && strng[i] <= 'z')
@@ -17,7 +19,8 @@ void toUpperCase_index(char strng[]){
     }
 }
 
-void toLowerCase_index(char strng[]){
+void toLowerCase_index(char strng[])
+{
     int i = 0;
     while (strng[i] != 0) {
         if(strng[i] >= 'A' && strng[i] <= 'Z')
@@ -26,7 +29,8 @@ void toLowerCase_index(char strng[]){
     }
 }
 
-char stringCopy_index(char dst[], char src[]){
+char stringCopy_index(char dst[], char src[])
+{
     int i = 0, j = 0;
     while (src[i] != 0){
         dst[i] = src[i];
@@ -36,7 +40,8 @@ char stringCopy_index(char dst[], char src[]){
     dst[i] = 0;
 }
 
-char strConcatenate_index(char dst[], char src[]){
+char strConcatenate_index(char dst[], char src[])
+{
     int i = 0;
     while(dst[i] != 0) i++;
     int j = 0;
@@ -48,7 +53,8 @@ char strConcatenate_index(char dst[], char src[]){
     dst[i] = 0;
 }
 
-char stringCompare_index(char st[], char nd[]){
+char stringCompare_index(char st[], char nd[])
+{
     int i = 0;
     while (st[i] != 0 && st[i] == nd[i]){
         i++;
@@ -56,19 +62,22 @@ char stringCompare_index(char st[], char nd[]){
     return st[i] - nd[i];
 }
 
-void kiir(char s[]){
+void kiir(char s[])
+{
     for (char *p = s; *p; p++)
         cout << *p;
     cout << endl;
 }
 
-int stringLength(char s[]){
+int stringLength(char s[])
+{
     char *p = s;
     while(*p) p++;
     return p - s;
 }
 
-char* findChar(char s[], char x){
+char* findChar(char s[], char x)
+{
     for(char *p = s; *p; p++)
         if(*p == x) return p;
     return 0;
@@ -90,7 +99,8 @@ void toLowerCase(char s[])
         p++;
     }
 }
-void toUpperCase(char s[]){
+void toUpperCase(char s[])
+{
     char *p = s;
     while(*p != 0) {
         if(*p >= 'a' && *p <= 'z')
@@ -99,7 +109,8 @@ void toUpperCase(char s[]){
     }
 }
 
-char strConcatenate(char dst[], char src[]){
+char strConcatenate(char dst[], char src[])
+{
     char *p = dst;
     while(*p) p++;
     char *q = src;
@@ -112,7 +123,8 @@ char strConcatenate(char dst[], char src[]){
     *p = 0;
 }
 
-char strCopy(char dst[], char src[]){
+char strCopy(char dst[], char src[])
+{
     char *p = dst;
     char *q = src;
     while(*q)
@@ -136,7 +148,8 @@ char *findString(char s[],char mit[])
     return 0;
 }
 
-char* findString_Tamo(char s[], char mit[]){
+char* findString_Tamo(char s[], char mit[])
+{
     int h = stringLength(mit);
     char *m = mit;
     for(char *p = s; *p; p++){
