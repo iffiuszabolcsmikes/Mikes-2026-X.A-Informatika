@@ -2,7 +2,7 @@
 
 using namespace std;
 
-const int STRING_SIZE = 100;
+const int STRING_SIZE = 1000;
 
 int stringLength_index(char strng[])
 {
@@ -175,11 +175,15 @@ char* findString_Tamo(char s[], char mit[])
 void replaceCharString(char s[], char mit, char mire[]){
     char temp[STRING_SIZE];
     char *t = temp;
-    for (char *p = s; *p; p++){
+    for(char *p = s; *p; p++)
+    {
         if (*p == mit)
-            for (char *q = mire; *q; q++, t++)
+        {
+            for(char *q = mire; *q; q++, t++)
                 *t = *q;
-        else {
+        }
+        else
+        {
             *t = *p;
             t++;
         }
@@ -214,19 +218,17 @@ int main()
     cout << s << endl;
     toLowerCase(s);
     cout << s << endl;
-    stringConcatenate(s, " csa");
-    cout << s << endl;
+    stringConcatenate(s, "mia");
     kiir(s);
     cout << stringLength(s) << endl;
     cout << findChar(s, 'a') << endl;
-    char vers[STRING_SIZE] = R"(Endre esete
+    char vers[STRING_SIZE] = R"(    Endre esete
     Endre egyszer elment lesre,
     Erdeje mellett ment, mert kereste,
     Merre lehet egy medve teste?
     Melyet letepert fegyvere, kedden este.)";
-    (vers, 'e', 'A');
-    toLowerCase(vers, 'A', 'a');
-    replaceCharChar(vers, 'e', 'A');
+    toLowerCase(vers);
+    replaceCharChar(vers, 'e', '3');
     kiir(vers);
     cout << findString_Tamo("mi mimit alma" , "mit") << endl;
     return 0;
