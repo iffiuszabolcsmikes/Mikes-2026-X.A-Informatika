@@ -146,29 +146,24 @@ char strCopy(char dst[], char src[])
 
 char *findString(char s[],char mit[])
 {
-    for(char *p = s;*p;p++)
+    if(*mit == 0)
+        return s;
+
+    for(char *p = s; *p; p++)
     {
+        char *q = p;
         char *m = mit;
-        for(char*q = p; *m && *q && *m == *q; m++,q++);
+
+        while(*q && *m && *q == *m)
+        {
+            q++;
+            m++;
+        }
+
         if(*m == 0)
             return p;
     }
-    return 0;
-}
 
-char* findString_Tamo(char s[], char mit[])
-{
-    int h = stringLength(mit);
-    char *m = mit;
-    for(char *p = s; *p; p++)
-    {
-        if(*m == 0)
-            return p - h;
-        if(*p != *m)
-            m = mit;
-        if(*p == *m)
-            m++;
-    }
     return 0;
 }
 
@@ -177,29 +172,11 @@ void replaceCharString(char s[], char mit, char mire[]){
     char *t = temp;
     for(char *p = s; *p; p++)
     {
-        if (*p == mit)
+        if(*p == mit)
         {
             for(char *q = mire; *q; q++, t++)
                 *t = *q;
         }
-        else
-        {
-            *t = *p;
-            t++;
-        }
-    }
-    *t = 0;
-    strCopy(s, temp);
-}
-
-void replaceCharString_v2(char s[], char mit, char mire[]){
-    char temp[STRING_SIZE];
-    char *t = temp;
-    for(char *p = s; *p; p++)
-    {
-        if(*p == mit)
-            for (char *q = mire; *q; q++, t++)
-                *t = *q;
         else
         {
             *t = *p;
@@ -230,6 +207,7 @@ int main()
     toLowerCase(vers);
     replaceCharChar(vers, 'e', '3');
     kiir(vers);
-    cout << findString_Tamo("mi mimit alma" , "mit") << endl;
+    //cout << findString_Tamo("aaaab" , "aaab") << endl;
+    cout << findString("aaaab" , "aaab") << endl;
     return 0;
 }
