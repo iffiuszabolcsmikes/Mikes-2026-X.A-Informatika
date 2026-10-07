@@ -146,28 +146,23 @@ char strCopy(char dst[], char src[])
 
 char *findString(char s[],char mit[])
 {
-    if(*mit == 0)
-        return s;
-
     for(char *p = s; *p; p++)
     {
-        char *q = p;
         char *m = mit;
-
-        while(*q && *m && *q == *m)
+        char *q = p;
+        while(*m && *q && *m == *q)
         {
-            q++;
             m++;
+            q++;
         }
-
         if(*m == 0)
             return p;
     }
-
     return 0;
 }
 
-void replaceCharString(char s[], char mit, char mire[]){
+void replaceCharString(char s[], char mit, char mire[])
+{
     char temp[STRING_SIZE];
     char *t = temp;
     for(char *p = s; *p; p++)
@@ -195,19 +190,20 @@ int main()
     cout << s << endl;
     toLowerCase(s);
     cout << s << endl;
-    stringConcatenate(s, "mia");
+    stringConcatenate(s, " csa");
+    cout << s << endl;
     kiir(s);
     cout << stringLength(s) << endl;
     cout << findChar(s, 'a') << endl;
-    char vers[STRING_SIZE] = R"(    Endre esete
+    char vers[STRING_SIZE] = R"(Endre esete
     Endre egyszer elment lesre,
     Erdeje mellett ment, mert kereste,
     Merre lehet egy medve teste?
     Melyet letepert fegyvere, kedden este.)";
+    (vers, 'e', 'A');
     toLowerCase(vers);
     replaceCharChar(vers, 'e', '3');
     kiir(vers);
-    //cout << findString_Tamo("aaaab" , "aaab") << endl;
-    cout << findString("aaaab" , "aaab") << endl;
+    cout << findString("aaababc" , "aab") << endl;
     return 0;
 }
