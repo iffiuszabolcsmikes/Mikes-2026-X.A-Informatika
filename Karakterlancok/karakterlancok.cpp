@@ -33,7 +33,7 @@ void toLowerCase_index(char strng[])
     }
 }
 
-char stringCopy_index(char dst[], char src[])
+void stringCopy_index(char dst[], char src[])
 {
     int i = 0, j = 0;
     while (src[i] != 0)
@@ -45,7 +45,7 @@ char stringCopy_index(char dst[], char src[])
     dst[i] = 0;
 }
 
-char strConcatenate_index(char dst[], char src[])
+void strConcatenate_index(char dst[], char src[])
 {
     int i = 0;
     while(dst[i] != 0) i++;
@@ -59,7 +59,7 @@ char strConcatenate_index(char dst[], char src[])
     dst[i] = 0;
 }
 
-char stringCompare_index(char st[], char nd[])
+int stringCompare_index(char st[], char nd[])
 {
     int i = 0;
     while (st[i] != 0 && st[i] == nd[i])
@@ -106,6 +106,7 @@ void toLowerCase(char s[])
         p++;
     }
 }
+
 void toUpperCase(char s[])
 {
     char *p = s;
@@ -117,7 +118,7 @@ void toUpperCase(char s[])
     }
 }
 
-char stringConcatenate(char dst[], char src[])
+void stringConcatenate(char dst[], char src[])
 {
     char *p = dst;
     while(*p) p++;
@@ -131,7 +132,7 @@ char stringConcatenate(char dst[], char src[])
     *p = 0;
 }
 
-char strCopy(char dst[], char src[])
+void stringCopy(char dst[], char src[])
 {
     char *p = dst;
     char *q = src;
@@ -179,18 +180,48 @@ void replaceCharString(char s[], char mit, char mire[])
         }
     }
     *t = 0;
-    strCopy(s, temp);
+    stringCopy(s, temp);
+}
+
+void replaceStringString(char s[], char mit[], char mire[])
+{
+    char temp[STRING_SIZE];
+    char *t = temp;
+    char *p = s;
+    int h = stringLength(mit);
+    char *found = findString(s, mit);
+    while(found)
+    {
+        while(p < found)
+        {
+            *t = *p;
+            p++;
+            t++;
+        }
+        for(char *q = mire; *q; q++, t++)
+            *t = *q;
+        p += h;
+        found = findString(p, mit);
+    }
+    while(*p)
+    {
+        *t = *p;
+        p++;
+        t++;
+    }
+    *t = 0;
+    stringCopy(s, temp);
 }
 
 int main()
 {
-    char s[] = "OK szia";
+    char s[STRING_SIZE] = "OK szia";
     cout << stringLength(s) << endl;
     toUpperCase(s);
     cout << s << endl;
     toLowerCase(s);
     cout << s << endl;
-    stringConcatenate(s, " csa");
+    stringConcatenate(s, "mia");
     cout << s << endl;
     kiir(s);
     cout << stringLength(s) << endl;
@@ -200,10 +231,12 @@ int main()
     Erdeje mellett ment, mert kereste,
     Merre lehet egy medve teste?
     Melyet letepert fegyvere, kedden este.)";
-    (vers, 'e', 'A');
     toLowerCase(vers);
     replaceCharChar(vers, 'e', '3');
     kiir(vers);
     cout << findString("aaababc" , "aab") << endl;
+    stringCopy(s, "alma, alma, piros alma odafenn a fan");
+    replaceStringString(s, "alma", "korte");
+    kiir(s);
     return 0;
 }
