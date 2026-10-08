@@ -40,7 +40,6 @@ void stringCopy_index(char dst[], char src[])
     {
         dst[i] = src[i];
         i++;
-        j++;
     }
     dst[i] = 0;
 }
@@ -166,8 +165,6 @@ char *findString(char s[],char mit[])
 
 void replaceCharString(char s[], char mit, char mire[])
 {
-    if(*mit == 0)
-        return;
     char temp[STRING_SIZE];
     char *t = temp;
     for(char *p = s; *p; p++)
@@ -189,6 +186,8 @@ void replaceCharString(char s[], char mit, char mire[])
 
 void replaceStringString(char s[], char mit[], char mire[])
 {
+    if(*mit == 0)
+        return;
     char temp[STRING_SIZE];
     char *t = temp;
     char *p = s;
