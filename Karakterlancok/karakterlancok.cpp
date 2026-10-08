@@ -4,38 +4,38 @@ using namespace std;
 
 const int STRING_SIZE = 1000;
 
-int stringLength_index(char strng[])
+int stringLength_index(char s[])
 {
     int i = 0;
-    while(strng[i] != 0) i++;
+    while(s[i] != 0) i++;
     return i;
 }
 
-void toUpperCase_index(char strng[])
+void toUpperCase_index(char s[])
 {
     int i = 0;
-    while(strng[i] != 0)
+    while(s[i] != 0)
     {
-        if(strng[i] >= 'a' && strng[i] <= 'z')
-            strng[i] -= 'a' - 'A';
+        if(s[i] >= 'a' && s[i] <= 'z')
+            s[i] -= 'a' - 'A';
         i++;
     }
 }
 
-void toLowerCase_index(char strng[])
+void toLowerCase_index(char s[])
 {
     int i = 0;
-    while(strng[i] != 0)
+    while(s[i] != 0)
     {
-        if(strng[i] >= 'A' && strng[i] <= 'Z')
-            strng[i] += 'a' - 'A';
+        if(s[i] >= 'A' && s[i] <= 'Z')
+            s[i] += 'a' - 'A';
         i++;
     }
 }
 
 void stringCopy_index(char dst[], char src[])
 {
-    int i = 0, j = 0;
+    int i = 0;
     while (src[i] != 0)
     {
         dst[i] = src[i];
@@ -147,6 +147,8 @@ void stringCopy(char dst[], char src[])
 
 char *findString(char s[],char mit[])
 {
+    if(*mit == 0)
+        return s;
     for(char *p = s; *p; p++)
     {
         char *m = mit;
@@ -164,6 +166,8 @@ char *findString(char s[],char mit[])
 
 void replaceCharString(char s[], char mit, char mire[])
 {
+    if(*mit == 0)
+        return;
     char temp[STRING_SIZE];
     char *t = temp;
     for(char *p = s; *p; p++)
