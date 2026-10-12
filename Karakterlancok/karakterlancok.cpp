@@ -216,6 +216,21 @@ void replaceStringString(char s[], char mit[], char mire[])
     stringCopy(s, temp);
 }
 
+void trim(char s[] ){
+    //megkeressuk a veget
+    char *q = s + stringLength(s) - 1;
+    while(q >= s && *q == ' '){
+        q--;
+    }
+    *(q + 1) = 0;
+    //megkeressuk az elejet
+    char *p = s;
+    while(*p && *p == ' '){
+        p++;
+    }
+    stringCopy(s, p);
+}
+
 int main()
 {
     char s[STRING_SIZE] = "OK szia";
