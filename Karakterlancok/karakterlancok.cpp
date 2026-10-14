@@ -231,6 +231,43 @@ void trim(char s[] ){
     stringCopy(s, p);
 }
 
+void slice(char s[], int i, int j)
+{
+    int k = 0;
+    char tp[100];
+    for(int a = i; a <= j; a++)
+    {
+        tp[k] = s[a];
+        k++;
+    }
+    tp[k] = 0;
+    stringCopy(s, tp);
+}
+
+void padStart(char s[], int n, char c)
+{
+    char tmp[100];
+    int i = 0;
+    while(i < n - stringLength_index(s))
+    {
+        tmp[i] = c;
+        i++;
+    }
+    stringConcatenate(tmp, s);
+    stringCopy(s, tmp);
+}
+
+void padEnd(char s[], int n, char c)
+{
+    int i = stringLength(s);
+    while(i < n)
+    {
+        s[i] = c;
+        i++;
+    }
+    s[i] = 0;
+}
+
 int main()
 {
     char s[STRING_SIZE] = "OK szia";
@@ -256,5 +293,19 @@ int main()
     stringCopy(s, "alma, alma, piros alma odafenn a fan");
     replaceStringString(s, "alma", "korte");
     kiir(s);
+
+    stringCopy(s, "    turos puszika    ");
+    trim(s);
+    cout << s << endl;
+
+    stringCopy(s, "abc def");
+    slice(s, 3, 5);
+    cout << s << endl;
+    stringCopy(s, "abc");
+    padStart(s,10,'x');
+    cout << s << endl;
+    padEnd(s,15,'@');
+    cout << s << endl;
+
     return 0;
 }
