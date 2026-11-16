@@ -206,18 +206,7 @@ int lnko(int a, int b)
 {
     while(b != 0)
     {
-        int r = a % b; //maradek
-        a = b;
-        b = r;
-    }
-    return a;
-}
-
-int lnko(int a, int b)
-{
-    while(b != 0)
-    {
-        int m = a % b;
+        int m = a % b; //maradek
         a = b;
         b = m;
     }
@@ -237,6 +226,13 @@ void kiir_r(int n)
     kiir_r(n - 1);
 }
 
+void kiirForditva_r(int n)
+{
+    if(n == 0) return;
+    kiirForditva_r(n - 1);
+    cout << n;
+}
+
 int main()
 {
     cout << "osszeg   " << osszeg(10) << endl;
@@ -247,6 +243,10 @@ int main()
     cout << "fibonacci_r " << fibonacci_r(12) << endl;
     cout << "hatvany " << hatvany(2, 10) << endl;
     cout << "hatvany_r " << hatvany_r(2, 10) << endl;
+    cout << "gyors hatvany " << gyorsHatvany(2, 10) << endl;
+    cout << "gyors hatvany_r " << gyorsHatvany_r(2, 10) << endl;
+    cout << "lnko " << lnko(50, 75) << endl;
+    cout << "lnko_r " << lnko_r(50, 75) << endl;
     cout << "sumProd " << sumProd(5) << endl;
     cout << "sumProd_r " << sumProd_r(5) << endl;
     cout << "szamjegyOssz " <<  szamjegyOssz(456) << endl;
@@ -255,9 +255,5 @@ int main()
     cout << "legnagyobb Szamjegy " << legnagyobbSzamjegy1(2842371) << endl;
     cout << "legnagyobb Szamjegy " << legnagyobbSzamjegy2(2842371) << endl;
     cout << "legnagyobb Szamjegy " << legnagyobbSzamjegy3(2842371) << endl;
-
-    cout << "lnko " << lnko(50, 75) << endl;
-    cout << "lnko_r " << lnko_r(50, 75) << endl;
-
     return 0;
 }
