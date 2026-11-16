@@ -1,18 +1,16 @@
 #include <iostream>
+#include <iomanip>
 #include <ctime>
 #include <cstdlib>
-#include <iomanip>
+
+#define N 20
 
 using namespace std;
-
-const int N = 100;
 
 void feltolt(int tomb[], int n)
 {
     for(int i = 0; i < n; i++)
-    {
         tomb[i] = rand() % 100;
-    }
 }
 
 void kiir(int tomb[], int n)
@@ -42,7 +40,6 @@ int particio(int tomb[], int also, int felso)
             also++;
         while(tomb[felso] > pivot)
             felso--;
-
         if(also >= felso)
             return felso;
 
@@ -62,14 +59,14 @@ void quickSort(int tomb[], int also, int felso)
 
 int main()
 {
-    srand(time(0));
-
-    int tomb[N];
     int n = N;
-
+    int tomb[N];
+    srand(time(0));
     feltolt(tomb, n);
+    cout << "random:" << endl;
     kiir(tomb, n);
-    cout << endl << "quick sort:" << endl;
+    cout << "quick sort:" << endl;
     quickSort(tomb, 0, n - 1);
     kiir(tomb, n);
+    return 0;
 }
