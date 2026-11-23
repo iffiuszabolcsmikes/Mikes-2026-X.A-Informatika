@@ -24,38 +24,15 @@ void kiir(int tomb[], int n)
     cout << endl;
 }
 
-void csere(int &a, int &b)
+void merge(int tomb[], int bal, int kozepso,  int jobb)
 {
-    int tmp = a;
-    a = b;
-    b = tmp;
-}
+    int i = bal;
+    int j = kozepso + 1;
 
-int particio(int tomb[], int also, int felso)
-{
-    int pivot = tomb[also]; //lehet barmelyik
-    while(true)
-    {
-        while(tomb[also] < pivot)
-            also++;
-        while(tomb[felso] > pivot)
-            felso--;
-        if(also >= felso)
-            return felso;
-
-        csere(tomb[also], tomb[felso]);
-        also++;
-        felso--;
-    }
-}
-
-void merge(int tomb[], int also, int kozepso, int felso)
-{
     int tmp[N];
     int k = 0;
-    int i = also;
-    int j = kozepso + 1;
-    while(i <= kozepso && j <= felso)
+
+    while(i <= kozepso && j <= jobb)
     {
         if(tomb[i] < tomb[j])
         {
@@ -75,27 +52,52 @@ void merge(int tomb[], int also, int kozepso, int felso)
         i++;
         k++;
     }
-    while(j <= felso)
+    while(j <= jobb)
     {
         tmp[k] = tomb[j];
         j++;
         k++;
     }
     k = 0;
-    for(int i = also; i <= felso; i++)
+    for(int x = bal; x <= jobb; x++)
     {
-        tomb[i] = tmp[k];
+        tomb[x] = tmp[k];
         k++;
     }
 }
 
-void mergeSort(int tomb[], int also, int felso)
+void merge2(int tomb[], int bal, int kozepso, int jobb)
 {
-    if(also >= felso) return;
-    int kozepso = (also + felso) / 2;
-    mergeSort(tomb, also, kozepso);
-    mergeSort(tomb, kozepso + 1, felso);
-    merge(tomb, also, kozepso, felso);
+    int i = bal;
+    int j = kozepso + 1;
+
+    int tmp[N];
+    int k = 0;
+
+    while(i <= kozepso && j <= jobb)
+        if(tomb[i] < tomb[j])
+            tmp[k++] = tomb[i++];
+        else
+            tmp[k++] = tomb[j++];
+
+    while(i <= kozepso)
+        tmp[k++] = tomb[i++];
+
+    while(j <= jobb)
+        tmp[k++] = tomb[j++];
+
+    k = 0;
+    for(int x = bal; x <= jobb; x++)
+        tomb[x] = tmp[k++];
+}
+
+void mergeSort(int tomb[], int bal, int jobb)
+{
+    if(bal >= jobb) return;
+    int kozepso = (bal + jobb) / 2;
+    mergeSort(tomb, bal, kozepso);
+    mergeSort(tomb, kozepso + 1, jobb);
+    merge(tomb, bal, kozepso, jobb);
 }
 
 int main()
@@ -104,10 +106,7 @@ int main()
     int tomb[N];
     srand(time(0));
     feltolt(tomb, n);
-    cout << "rand: " << endl;
     kiir(tomb, n);
-
-    cout << "merge sort:" << endl;
     mergeSort(tomb, 0, n - 1);
     kiir(tomb, n);
     return 0;
